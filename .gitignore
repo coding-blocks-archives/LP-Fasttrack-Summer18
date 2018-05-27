@@ -1,3 +1,9 @@
+# Ignore everything
+*
+# But not these file
+!.cc
+!.gitignore
+
 # Prerequisites
 *.d
 
@@ -30,3 +36,4 @@
 *.exe
 *.out
 *.app
+
