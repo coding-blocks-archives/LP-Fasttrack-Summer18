@@ -9,6 +9,7 @@ void mySwap(int& a, int& b){
     b = tmp;
 }
 
+
 void inputArr(int arr[], int n){
     for(int i = 0; i < n; ++i){
         cin >> arr[i];
