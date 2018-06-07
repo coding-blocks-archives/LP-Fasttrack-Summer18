@@ -2,14 +2,42 @@
 // deepak@codingblocks.com
 #include <iostream>
 using namespace std;
-int main(){
-    int mat[3][4];
 
-    for(int r = 0; r < 3; ++r){
-        for(int c = 0; c < 4; ++c){
-            cout << "enter element " << r << " " << c << ": ";
+int inputMat(int mat[30][40], int nRows, int nCols) {
+    for (int r = 0; r < nRows; ++r) {
+        for (int c = 0; c < nCols; ++c) {
+            // cout << "enter element " << r << " " << c << ": ";
             cin >> mat[r][c];
         }
     }
-    return 0;   
+}
+
+void outputMat(int mat[][40], int m, int n) {
+    for (int r = 0; r < m; ++r) {
+        for (int c = 0; c < n; ++c)
+        {
+            cout << mat[r][c] << " ";
+        }
+        cout << endl;
+    }
+}
+
+// most significant dimension can be left out
+void outputMatColWise(int mat[][40], int m, int n){
+    for(int c = 0; c < n; ++c){
+        for(int r = 0; r < m; ++r){
+            cout << mat[r][c] << " ";
+        }
+        cout << endl;
+    }
+}
+
+
+int main() {
+    int mat[30][40][3];
+    int m, n;
+    cin >> m >> n;
+    inputMat(mat, m, n);
+    outputMatColWise(mat, m, n);
+    return 0;
 }
