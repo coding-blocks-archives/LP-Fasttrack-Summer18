@@ -21,6 +21,11 @@ int fib(int n){
     return prevFib + superPrev;
 }
 
+void printInc(int n){
+    if (n <= 0) return;
+    printInc(n - 1);
+    cout << n << " ";
+}
 
 
 int main(){
