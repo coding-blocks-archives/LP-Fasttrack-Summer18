@@ -61,7 +61,9 @@ void displayArr(int arr[], int n) {
     displayArr(arr, n - 1);
 }
 
+int cnt = 0;
 void bubbleSort(int arr[], int be, int en){ // [be,en]
+    ++cnt;
     if (be >= en){
         return;
     }
@@ -97,10 +99,11 @@ int main() {
     // int arr[] = {1, 2, 3};
     // displayArr(arr, 3);
 
-    int arr[] = {5, 4 , 1, 3, 2};
-    bubbleSort(arr, 0, 4);
+    int arr[] = {7, 6, 5, 4 , 3, 2, 1};
+    bubbleSort(arr, 0, 6);
     void outputArr(int arr[], int n); // fn declaration
-    outputArr(arr, 5);
+    outputArr(arr, 7);
+    cout << "Cnt is " << cnt << endl;
 }
 
 
