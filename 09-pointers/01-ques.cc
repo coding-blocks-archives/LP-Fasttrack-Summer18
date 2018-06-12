@@ -3,15 +3,6 @@
 #include <iostream>
 using namespace std;
 #define print(x)    cout << (#x) << "\t\t: " << (x) << endl
-
-int func2(int* arr){
-
-}
-
-int func1(int arr[]){
-
-}
-
 int main(){
     int x = 10;
     int* ptr = &x;
@@ -46,7 +37,9 @@ int main(){
     // print(&iarr[3]-&iarr[1]);
     // print(&carr[3]-&carr[1]);
 
-    func1(iarr);
-    func2(iarr);
+    // func1(iarr);
+    // func2(iarr);
+
+
 
 }
