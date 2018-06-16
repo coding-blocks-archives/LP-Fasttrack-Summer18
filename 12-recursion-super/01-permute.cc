@@ -2,12 +2,21 @@
 // deepak@codingblocks.com
 #include <iostream>
 using namespace std;
-int cnt = 0;
+
+void bubbleSort(int arr[], int n){
+    for(int i = 0; i < n - 1; ++i){
+        for(int cur = 0; cur < n - i - 1; ++cur){
+            if (arr[cur] > arr[cur + 1]){
+                mySwap(arr[cur], arr[cur + 1]);
+            }
+        }
+    }
+}
 
 void printPermutations(char arr[], int be){
     if (arr[be] == '\0'){
-        ++cnt;
-        cout <<cnt << ".\t" << arr << endl;
+        // push the permutation into the vector
+
         return;
     }
 
@@ -18,9 +27,7 @@ void printPermutations(char arr[], int be){
     }
 }
 
+
 int main(){
-    char arr[100];
-    cin >> arr;
     
-    printPermutations(arr, 0);   
 }
