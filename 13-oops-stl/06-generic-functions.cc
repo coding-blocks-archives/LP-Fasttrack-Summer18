@@ -8,7 +8,7 @@ template<typename T, typename Y>
 void bubbleSort(T arr[], int n, Y compare){
     for(int i = 0; i < n - 1; ++i){
         for(int cur = 0; cur < n - i - 1; ++cur){
-            if (compare(arr[i], arr[i+1])){
+            if (compare(arr[cur], arr[cur+1])){
                 // it returns true if arr[i] > arr[i + 1]
                 swap(arr[cur], arr[cur + 1]);
             }
@@ -32,25 +32,34 @@ bool compareInt(int x, int y){
     return x > y;
 }
 
-template<typename T>
-void print(T arr[], int n){
+template<typename T, typename Y >
+void print(T arr[], int n, Y printCriteria){
     for(int i = 0; i < n; ++i){
-        cout << arr[i] << " ";
+        // cout << arr[i] << " ";
+        printCriteria(arr[i]);  // element
     }
     cout << endl;
+}
+
+void printMyElephant(Elephant E){
+    cout << E.wt << " " << E.name << endl;
+}
+
+void printInt(int x){
+    cout << x << " ";
 }
 
 int main() {
     int arr_int[] = {3,2,1};
     char arr_char[] = {'a','b','c'};
 
-    bubbleSort(arr_char, 3, compareInt);
+    // bubbleSort(arr_char, 3, compareInt);
     // print<char>(arr_char, 3);
     // cout << endl;
 
-    // bubbleSort(arr_int, 3);
-    // print(arr_int, 3);
-    // cout << endl;
+    bubbleSort(arr_int, 3, compareInt);
+    print(arr_int, 3, printInt);
+    cout << endl;
 
     Elephant E[] = {
         {1600, "Hachi"},
@@ -59,6 +68,6 @@ int main() {
     };
     
     bubbleSort(E, 3, compareMyElepnant);
-    // print(E, 3);
+    print(E, 3, printMyElephant);
 
 }
