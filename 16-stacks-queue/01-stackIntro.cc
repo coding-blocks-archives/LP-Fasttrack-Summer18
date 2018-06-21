@@ -13,6 +13,17 @@ void printStk(stack<int>& stk){
     cout << endl;
 }    
 
+??? redundantParantheses(){}
+vector<int> nearestLargest(){ // towards left
+}
+??? reverseStack2(){}
+??? reverseStack1(){}
+??? reverseStack0(){}
+
+class SpecialStack{};
+
+
+
 int main(){
     stack<int> s;
 
