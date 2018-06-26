@@ -50,8 +50,9 @@ class HashMap {
     }
 
     void rehash() {
+        cout << "Rehashing is being done. Currnet Capacity is " << sze << "...\n";
         Node** const oldtable = table;
-        table = new Node*[2 * capacity];
+        table = new Node*[2 * capacity]();
         int oldCapacity = capacity;
         capacity = 2 * capacity;
 
@@ -60,10 +61,12 @@ class HashMap {
             while (head) {
                 Node* tmp = head;
                 head = head->next;
+                tmp->next = NULL;
                 insertIntoTable(tmp);
             }
         }
         delete [] oldtable;
+        cout << "Rehashing completed...\n";
     }
 
 public:
@@ -108,5 +111,29 @@ int main() {
     h.insert("Johnny2", 456);
     h.insert("Yash2", 678);
     h.insert("Aishwarya2", 1345);
+     h.insert("John3", 123);
+    h.insert("Johnny3", 456);
+    h.insert("Yash3", 678);
+    h.insert("Aishwarya3", 1345);
+    h.insert("John23", 123);
+    h.insert("Johnny23", 456);
+    h.insert("Yash23", 678);
+    h.insert("Aishwarya23", 1345);
+    h.insert("John4", 123);
+    h.insert("Johnny4", 456);
+    h.insert("Yash4", 678);
+    h.insert("Aishwarya4", 1345);
+    h.insert("John24", 123);
+    h.insert("Johnny24", 456);
+    h.insert("Yash24", 678);
+    h.insert("Aishwarya24", 1345);
+     h.insert("John34", 123);
+    h.insert("Johnny34", 456);
+    h.insert("Yash34", 678);
+    h.insert("Aishwarya34", 1345);
+    h.insert("John234", 123);
+    h.insert("Johnny234", 456);
+    h.insert("Yash234", 678);
+    h.insert("Aishwarya234", 1345);
     h.print();
 }
