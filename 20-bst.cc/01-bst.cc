@@ -101,31 +101,85 @@ void levelPrint(TreeNode<T>* root) {
     while (q.empty() == false) {
         TreeNode<T>* cur = q.front(); q.pop();
 
-        if (cur == MARKER){
+        if (cur == MARKER) {
             // signifies end of the current level.. all children of the current level are
             // already pushed into the queue
             if (q.empty() == false) q.push(MARKER);
+            cout << endl;
             continue;
         }
 
-        cout << cur->data << " ";
+        cout << cur->data << "(" << (cur->next ? cur->next->data : '0') << ")-->" ;
         if (cur->left) q.push(cur->left);
         if (cur->right) q.push(cur->right);
     }
 }
 
 template<typename T>
-TreeNode<T>* createTree(T stopper){
+void connectLevels(TreeNode<T>* root) {
+    TreeNode<T>* const MARKER = NULL;   // marker is constant
+
+    queue<TreeNode<T>*> q;
+    q.push(root);
+    q.push(MARKER);
+
+    while (q.empty() == false) {
+        TreeNode<T>* cur = q.front(); q.pop();
+
+        if (cur == MARKER) {
+            // signifies end of the current level.. all children of the current level are
+            // already pushed into the queue
+            if (q.empty() == false) q.push(MARKER);
+            continue;
+        }
+        cur->next = q.front();
+        if (cur->left) q.push(cur->left);
+        if (cur->right) q.push(cur->right);
+    }
+}
+
+bool getPath(TreeNode<int>* root, vector<TreeNode<int>*>& v, int key) {
+    if (root == NULL) return false;
+
+    v.push_back(root);
+    if (root->data == key) return true;
+    if (getPath(root->left, v, key)) return true;
+    if (getPath(root->right, v, key)) return true;
+    v.pop_back();
+    return false;
+}
+
+TreeNode<int>* findLcaBT(TreeNode<int>* root, int x, int y) {
+    vector<TreeNode<int>*> x_path, y_path;
+    bool xPresence =  getPath(root, x_path, x);
+    bool yPresence =  getPath(root, y_path, y);
+
+    if (!xPresence or !yPresence) return NULL;
+
+    int i = 0, j = 0;
+    while (i < x_path.size() && j < y_path.size() && x_path[i] == y_path[j]) {
+        ++i;
+        ++j;
+    }
+
+    return x_path[i - 1];
+}
+
+
+template<typename T>
+TreeNode<T>* createTree(T stopper) {
     T x; cin >> x;
     if (x == stopper) return NULL;
 
-    TreeNode* root = new TreeNode(x);
+    TreeNode<T>* root = new TreeNode<T>(x);
     // cout << "Enter left child of " << x << " ";
     root->left = createTree(stopper);
     // cout << "Enter right child of " << x << " ";
     root->right = createTree(stopper);
     return root;
 }
+
+
 
 
 
@@ -144,4 +198,24 @@ int main() {
 
     // TreeNode<char>* root = createBst<char>('x');
     // levelPrint(root);
+
+    // TreeNode<char>* root = createTree('x');
+    // connectLevels(root);
+    // levelPrint(root);
+
+    TreeNode<int>* root = createTree(-1);
+    // vector<TreeNode<int>*> v; 
+    // int key; cin >> key;
+    // bool ans = getPath(root, v, key);
+    // if (ans) {
+    //     for (TreeNode<int>* x : v) {
+    //         cout << x->data << "-->";
+    //     }
+    // }
+    // else {
+    //     cout << "Cant find element. So where can I find the path." << endl;
+    // }
+    int x, y; cin >> x >> y;
+    auto ans = findLcaBT(root, x, y);
+    cout << ans << " " << (ans ? ans->data : -1) << endl;
 }
