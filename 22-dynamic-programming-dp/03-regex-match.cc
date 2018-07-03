@@ -24,7 +24,7 @@ bool regexMatch(char str[], int be, char pattern[], int i) {
 
     if (pattern[i] == '*') {
         return
-            /*match atleast one char*/
+            /*match  one char*/
             regexMatch(str, be + 1, pattern, i) or
             /*match zero char*/
             regexMatch(str, be, pattern, i + 1);
